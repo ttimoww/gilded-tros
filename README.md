@@ -10,3 +10,26 @@ Instructions can be found in the GildedTrosRequirements document.
 
 
 Have fun and good luck!
+
+# Timo
+
+**Step 1**
+- Wrote tests
+- Found two bugs in `GildedTros` while writing the tests (see commit)
+
+**Step 2**
+- Changed index-based-loop to for of loop
+
+**Step 3**
+- Split the `updateQuality` method into product specific methods
+- Found and implemented some extra test cases while refactoring
+
+**Step 4**
+- Added handling for Smelly items using a factor (assuming quality never decreases below 0)
+
+**Notes**
+- In the original implementation, when 10 days until a conference are reached, the quality only decrease by 1
+
+- The requirements do not specify if the quality of "Good Wine" increases twice as fast after the sell In date has passed.
+
+- I asummed quality can never go below 0
