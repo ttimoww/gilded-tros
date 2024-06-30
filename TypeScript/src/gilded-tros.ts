@@ -76,17 +76,18 @@ export class GildedTros {
      * Update the quality of a default item
      * The quality of a default item decreases by 1 each day.
      * @param item The item to update
+     * @param factor The factor to decrease the quality by
      */
-    private updateDefaultItem(item: Item): void {
+    private updateDefaultItem(item: Item, factor = 1): void {
         item.sellIn = item.sellIn - 1;
 
         if (item.quality > 0) {
             if (item.sellIn < 0) {
-                item.quality = item.quality - 2;
+                item.quality = item.quality - 2 * factor;
                 return
             }
 
-            item.quality = item.quality - 1;
+            item.quality = item.quality - 1 * factor;
         }
     }
 
@@ -96,15 +97,22 @@ export class GildedTros {
                 case 'Good Wine':
                     this.updateGoodWine(item);
                     break;
+
                 case 'Backstage passes for Re:Factor':
-                    this.updateBackstagePasses(item);
-                    break;
                 case 'Backstage passes for HAXX':
                     this.updateBackstagePasses(item);
                     break;
+
                 case 'B-DAWG Keychain':
                     this.updateBDawgKeychain(item);
                     break;
+
+                case 'Duplicate Code':
+                case 'Long Methods':
+                case 'Ugly Variable Names':
+                    this.updateDefaultItem(item, 2);
+                    break;
+
                 default:
                     this.updateDefaultItem(item);
                     break;

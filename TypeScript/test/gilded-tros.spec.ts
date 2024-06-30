@@ -78,4 +78,13 @@ describe('GildedTrosTest', () => {
         app.updateQuality();
         expect(app.items[0].quality).toEqual(80);
     });
+
+    it('should decrease the quality of smelly items by twice as fast', () => {
+        const items: Item[] = [new Item('Duplicate Code', 3, 6), new Item('Long Methods', 3, 6), new Item('Ugly Variable Names', 3, 6)];
+        const app: GildedTros = new GildedTros(items);
+        app.updateQuality();
+        expect(app.items[0].quality).toEqual(4);
+        expect(app.items[1].quality).toEqual(4);
+        expect(app.items[2].quality).toEqual(4);
+    });
 });
