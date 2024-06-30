@@ -64,11 +64,12 @@ describe('GildedTrosTest', () => {
     });
 
     it('should increase the quality of conference tickets by 3 when there are 5 days or less', () => {
-        const items: Item[] = [new Item('Backstage passes for Re:Factor', 5, 20), new Item('Backstage passes for HAXX', 5, 20)];
+        const items: Item[] = [new Item('Backstage passes for Re:Factor', 5, 20), new Item('Backstage passes for HAXX', 5, 20), new Item('Backstage passes for HAXX', 2, 49)];
         const app: GildedTros = new GildedTros(items);
         app.updateQuality();
         expect(app.items[0].quality).toEqual(23);
         expect(app.items[1].quality).toEqual(23);
+        expect(app.items[2].quality).toEqual(50);
     });
 
     it('should keep the quality of legendary items at 80', () => {
