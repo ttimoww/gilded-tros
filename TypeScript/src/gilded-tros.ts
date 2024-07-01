@@ -14,12 +14,7 @@ export class GildedTros {
     private updateGoodWine(item: Item): void {
         item.sellIn = item.sellIn - 1;
 
-        if (item.quality < 49) {
-            item.quality = item.quality + 1;
-            return
-        }
-
-        item.quality = 50;
+        item.quality = Math.min(item.quality + 1, 50);
     }
 
     /**
@@ -39,27 +34,18 @@ export class GildedTros {
         }
 
         if (item.sellIn < 6) {
-            if (item.quality < 48) {
-                item.quality = item.quality + 3;
-                return
-            }
-
-            item.quality = 50;
+            item.quality = Math.min(item.quality + 3, 50);
             return
         }
 
         if (item.sellIn < 11) {
-            if (item.quality < 49) {
-                item.quality = item.quality + 2;
-                return
-            }
-
-            item.quality = 50;
+            item.quality = Math.min(item.quality + 2, 50);
             return
         }
 
         if (item.quality < 50) {
             item.quality = item.quality + 1;
+            return
         }
     }
 
@@ -82,12 +68,11 @@ export class GildedTros {
         item.sellIn = item.sellIn - 1;
 
         if (item.quality > 0) {
+            let decrease = factor;
             if (item.sellIn < 0) {
-                item.quality = item.quality - 2 * factor;
-                return
+                decrease *= 2;
             }
-
-            item.quality = item.quality - 1 * factor;
+            item.quality = Math.max(item.quality - decrease, 0);
         }
     }
 
